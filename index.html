@@ -1070,27 +1070,33 @@
   })();
 </script>
  <!--Start of Tawk.to Script-->
-<script type='text/javascript'>
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+<script type="text/javascript">
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 (function(){
-var s1=document.createElement(&quot;script&quot;),s0=document.getElementsByTagName(&quot;script&quot;)[0];
-s1.async=true;
-s1.src=&#39;https://embed.tawk.to/6372e97edaff0e1306d767de/1h7fqlvjn&#39;;
-s1.charset=&#39;UTF-8&#39;;
-s1.setAttribute(&#39;crossorigin&#39;,&#39;*&#39;);
-s0.parentNode.insertBefore(s1,s0);
+  var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/6372e97edaff0e1306d767de/1h7fqlvjn';
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
+  s0.parentNode.insertBefore(s1, s0);
 })();
-</script>
-<!--End of Tawk.to Script-->
-  <script type='text/javascript'>
-  Tawk_API.toggle();
 
-//Example
-
+// Abrir el chat cuando el usuario haga clic en los CTA
 Tawk_API.onLoad = function(){
-    Tawk_API.maximize();
+  // Nada aquí: solo aseguramos que la API esté lista
 };
-    </script>
+
+// Función auxiliar para los botones
+function abrirChat(e){
+  if (e) e.preventDefault();
+  if (typeof Tawk_API !== 'undefined' && Tawk_API.toggle) {
+    Tawk_API.toggle();
+  } else {
+    console.warn('Tawk todavía no ha cargado.');
+  }
+}
+</script>
 <!--End of Tawk.to Script-->
 </body>
 </html>
