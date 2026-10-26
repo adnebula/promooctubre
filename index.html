@@ -17,6 +17,9 @@
     --violet-soft:#f4e9fa;
     --violet-soft-2:#faf5fd;
     --black:#0d0812;
+    --black-2:#160d1f;
+    --red:#e01e37;
+    --red-dark:#b3122a;
     --text:#2a1a35;
     --muted:#6b5a78;
     --white:#ffffff;
@@ -95,13 +98,14 @@
     font-weight:600;
     letter-spacing:1.5px;
     text-transform:uppercase;
-    color:var(--violet);
+    color:var(--white);
     padding:8px 18px;
     border-radius:100px;
-    background:var(--violet-soft);
-    border:1px solid rgba(112,0,147,.25);
+    background:linear-gradient(120deg,var(--red),var(--red-dark));
+    border:1px solid rgba(224,30,55,.5);
     margin-bottom:26px;
     animation:fadeUp .8s ease both .1s;
+    box-shadow:0 8px 24px -10px rgba(224,30,55,.7);
   }
 
   h1{
@@ -214,6 +218,8 @@
     animation:fadeUp .8s ease both .5s, pulse 2.6s ease-in-out infinite 1.5s;
     position:relative;
     z-index:1;
+    cursor:pointer;
+    border:none;
   }
 
   .cta:hover{
@@ -375,7 +381,32 @@
     color:var(--violet);
   }
 
-  /* PROCESO */
+  /* PROCESO — ZONA NEGRA */
+  .section-dark{
+    background:linear-gradient(160deg, var(--black) 0%, var(--black-2) 100%);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .section-dark::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(155,47,209,.28), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(112,0,147,.32), transparent 50%);
+    pointer-events:none;
+  }
+
+  .section-dark .section-title{color:#fff;position:relative;}
+  .section-dark .section-title .accent{
+    background:linear-gradient(120deg,#c77dff, #e9c6ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .section-dark .section-sub{color:#b8a8c4;position:relative;}
+
   .steps{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
@@ -386,6 +417,17 @@
   .step{
     text-align:center;
     padding:24px 16px;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(199,125,255,.18);
+    backdrop-filter:blur(4px);
+    transition:transform .35s ease, border-color .35s ease, background .35s ease;
+  }
+
+  .step:hover{
+    transform:translateY(-4px);
+    border-color:rgba(199,125,255,.45);
+    background:rgba(255,255,255,.08);
   }
 
   .step-num{
@@ -408,11 +450,11 @@
     font-family:'Space Grotesk',sans-serif;
     font-size:1rem;
     font-weight:600;
-    color:var(--violet);
+    color:#e9c6ff;
     margin-bottom:6px;
   }
 
-  .step p{font-size:.85rem;color:var(--muted);}
+  .step p{font-size:.85rem;color:#b8a8c4;}
 
   /* ENTREGA */
   .delivery{
@@ -447,6 +489,13 @@
     margin-bottom:10px;
     color:var(--violet);
     position:relative;
+  }
+
+  .delivery h2 .accent{
+    background:linear-gradient(120deg,var(--violet), var(--violet-light));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
 
   .delivery p{
@@ -499,6 +548,79 @@
     font-weight:600;
     margin-bottom:4px;
   }
+
+  /* FAQ — ZONA NEGRA */
+  .faq{
+    position:relative;
+  }
+
+  .faq-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    max-width:820px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  .faq-item{
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(199,125,255,.18);
+    overflow:hidden;
+    transition:border-color .3s ease, background .3s ease;
+  }
+
+  .faq-item[open]{
+    border-color:rgba(224,30,55,.55);
+    background:rgba(255,255,255,.08);
+  }
+
+  .faq-item summary{
+    list-style:none;
+    cursor:pointer;
+    padding:20px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    color:#fff;
+    transition:color .3s ease;
+  }
+
+  .faq-item summary::-webkit-details-marker{display:none;}
+
+  .faq-item summary:hover{color:#e9c6ff;}
+
+  .faq-item summary .faq-icon{
+    flex-shrink:0;
+    width:28px;height:28px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--red), var(--red-dark));
+    color:#fff;
+    font-size:1.1rem;
+    font-weight:700;
+    line-height:1;
+    transition:transform .3s ease;
+    box-shadow:0 6px 18px -6px rgba(224,30,55,.7);
+  }
+
+  .faq-item[open] summary .faq-icon{
+    transform:rotate(45deg);
+  }
+
+  .faq-body{
+    padding:0 24px 20px;
+    font-size:.92rem;
+    color:#cbbdd6;
+    line-height:1.6;
+  }
+
+  .faq-body strong{color:#e9c6ff;}
 
   /* CTA FINAL */
   .final-cta{
@@ -557,6 +679,7 @@
     text-decoration:none;
     border-bottom:1px solid transparent;
     transition:border-color .3s ease, color .3s ease;
+    cursor:pointer;
   }
 
   footer a:hover{
@@ -605,12 +728,15 @@
     .cta{width:100%;padding:17px 26px;font-size:1rem;}
     section{padding:44px 0;}
     .delivery{padding:32px 22px;}
+    .faq-item summary{padding:16px 18px;font-size:.92rem;}
+    .faq-body{padding:0 18px 18px;}
   }
 
   @media(prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;}
   }
-    /* CUENTA ATRÁS */
+
+  /* CUENTA ATRÁS — ROJO */
   .countdown{
     display:flex;
     justify-content:center;
@@ -626,9 +752,9 @@
     min-width:72px;
     padding:12px 10px;
     border-radius:14px;
-    background:linear-gradient(160deg, #ffffff, var(--violet-soft));
-    border:1px solid rgba(112,0,147,.22);
-    box-shadow:0 14px 32px -22px rgba(112,0,147,.6);
+    background:linear-gradient(160deg, #ffffff, #ffe9ec);
+    border:1px solid rgba(224,30,55,.35);
+    box-shadow:0 14px 32px -22px rgba(224,30,55,.7);
     position:relative;
     overflow:hidden;
   }
@@ -637,7 +763,7 @@
     content:"";
     position:absolute;
     top:0;left:0;right:0;height:3px;
-    background:linear-gradient(90deg, var(--violet), var(--violet-light));
+    background:linear-gradient(90deg, var(--red), var(--red-dark));
   }
 
   .countdown-num{
@@ -645,9 +771,10 @@
     font-weight:700;
     font-size:1.6rem;
     line-height:1;
-    color:var(--violet);
+    color:var(--red);
     letter-spacing:-.5px;
     font-variant-numeric:tabular-nums;
+    text-shadow:0 1px 0 rgba(255,255,255,.8);
   }
 
   .countdown-label{
@@ -656,7 +783,7 @@
     font-weight:600;
     letter-spacing:1.2px;
     text-transform:uppercase;
-    color:var(--muted);
+    color:var(--red-dark);
     margin-top:6px;
   }
 
@@ -668,7 +795,7 @@
     animation:fadeUp .8s ease both .12s;
   }
 
-  .countdown-text strong{color:var(--violet);}
+  .countdown-text strong{color:var(--red);}
 
   /* Estado: promo expirada */
   .countdown.expired{
@@ -683,11 +810,11 @@
     font-family:'Space Grotesk',sans-serif;
     font-weight:600;
     font-size:1.05rem;
-    color:var(--violet);
+    color:var(--red);
     padding:14px 26px;
     border-radius:100px;
-    background:var(--violet-soft);
-    border:1px solid rgba(112,0,147,.25);
+    background:#ffe9ec;
+    border:1px solid rgba(224,30,55,.35);
   }
 
   @media(max-width:520px){
@@ -711,7 +838,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-          <div class="badge">Promoción de lanzamiento</div>
+      <div class="badge">Últimos días de promoción</div>
 
       <p class="countdown-text">
         La oferta termina el <strong>31 de octubre</strong>
@@ -753,13 +880,13 @@
       </div>
 
       <div>
-        <a class="cta" onclick="Tawk_API.toggle()">
+        <button class="cta" onclick="abrirChat(event)">
           Quiero mi paquete
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
-        </a>
+        </button>
         <p class="cta-note">Respuesta inmediata por chat</p>
       </div>
     </div>
@@ -895,8 +1022,8 @@
     </div>
   </section>
 
-  <!-- PROCESO -->
-  <section>
+  <!-- PROCESO — ZONA NEGRA -->
+  <section class="section-dark">
     <div class="container">
       <h2 class="section-title">Cómo <span class="accent">trabajamos</span></h2>
       <p class="section-sub">Un proceso simple y transparente, de principio a fin.</p>
@@ -952,17 +1079,6 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
-          <strong>Pago por adelantado</strong>
-          <p>Aceptamos múltiples métodos, incluido pago en bolívares.</p>
-        </div>
-
-        <div class="trust-item">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-          </div>
           <strong>Asesoría en Caracas</strong>
           <p>Consultoría previa presencial sin costo si estás en la ciudad.</p>
         </div>
@@ -977,6 +1093,76 @@
           <strong>Respuesta rápida</strong>
           <p>Atención directa por Telegram para resolver tus dudas.</p>
         </div>
+
+        <div class="trust-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </div>
+          <strong>Métodos de pago flexibles</strong>
+          <p>Coordina con nosotros al escribir por el chat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — ZONA NEGRA -->
+  <section class="section-dark faq">
+    <div class="container">
+      <h2 class="section-title">Preguntas <span class="accent">frecuentes</span></h2>
+      <p class="section-sub">Resolvemos las dudas más comunes antes de que empieces.</p>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>
+            ¿Necesito tener cuenta de Facebook e Instagram?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            Sí, es indispensable contar con una cuenta de <strong>Facebook e Instagram vinculadas</strong> (idealmente a través de una página de empresa o Business Manager). Si no las tienes, podemos orientarte para crearlas, aunque la gestión corre por tu parte.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            ¿El píxel de Meta está incluido en el paquete?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            No, la instalación del píxel no está incluida en el precio base. Si lo necesitas para medir conversiones avanzadas, tiene un <strong>costo adicional de $15</strong>. Puedes solicitarlo al momento de contratar.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            ¿La landing page incluye dominio propio?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            No. La landing page se entrega <strong>funcionando y lista</strong> en un subdominio de GitHub Pages: <strong>adnebula.github.io/cliente</strong>. Si deseas un dominio personalizado (por ejemplo, www.tunegocio.com), es opcional y tiene un costo de <strong>$35 USD</strong>.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            ¿El dominio es obligatorio para la campaña?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            No es obligatorio. La campaña puede apuntar perfectamente al enlace de GitHub Pages. El dominio personalizado solo mejora la imagen de marca y la confianza del usuario, pero no es un requisito técnico.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            ¿Cómo se coordina el pago?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            Todos los detalles de pago, montos y métodos se coordinan directamente <strong>cuando nos escribes por el chat</strong>. Ahí resolvemos tus dudas y te damos los pasos a seguir de forma personalizada.
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -987,13 +1173,13 @@
       <h2>Empieza hoy, <span class="accent">en 48h está listo</span></h2>
       <p>Aprovecha el precio de lanzamiento y da el primer paso para hacer visible tu negocio.</p>
 
-      <a class="cta" onclick="Tawk_API.toggle()">
+      <button class="cta" onclick="abrirChat(event)">
         Chatea ahora y resuelve tus dudas
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
-      </a>
+      </button>
       <p class="cta-note">Respuesta inmediata · Sin compromiso</p>
     </div>
   </section>
@@ -1012,12 +1198,12 @@
     <p>Caracas, Venezuela</p>
 
     <p style="margin-top:12px;">
-      <a onclick="Tawk_API.toggle()">
+      <a onclick="abrirChat(event)">
         Contáctanos
       </a>
     </p>
 
-<p>V-180288259</p>
+    <p>V-180288259</p>
 
     <p class="footer-note">
       Promoción válida por tiempo limitado. El precio de $99 corresponde al primer mes del paquete (campaña + landing page). Servicio mensual de continuidad disponible al finalizar el primer mes. El alcance estimado puede variar según producto, zona y objetivo.
@@ -1069,7 +1255,8 @@
     const timer = setInterval(tick, 1000);
   })();
 </script>
- <!--Start of Tawk.to Script-->
+
+<!-- Start of Tawk.to Script -->
 <script type="text/javascript">
 var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 (function(){
@@ -1082,12 +1269,11 @@ var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
   s0.parentNode.insertBefore(s1, s0);
 })();
 
-// Abrir el chat cuando el usuario haga clic en los CTA
 Tawk_API.onLoad = function(){
-  // Nada aquí: solo aseguramos que la API esté lista
+  // Aseguramos que la API esté lista
 };
 
-// Función auxiliar para los botones
+// Función auxiliar para los botones CTA
 function abrirChat(e){
   if (e) e.preventDefault();
   if (typeof Tawk_API !== 'undefined' && Tawk_API.toggle) {
@@ -1097,6 +1283,7 @@ function abrirChat(e){
   }
 }
 </script>
-<!--End of Tawk.to Script-->
+<!-- End of Tawk.to Script -->
+
 </body>
 </html>
